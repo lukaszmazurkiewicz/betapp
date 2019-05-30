@@ -1,5 +1,6 @@
 package com.kodilla.betapp.event;
 
+import com.kodilla.betapp.coupon.Coupon;
 import com.kodilla.betapp.match.Match;
 import com.kodilla.betapp.odds.Result;
 import com.kodilla.betapp.user.User;
@@ -36,4 +37,8 @@ public class Event {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "MATCH_ID")
     private Match match;
+
+    @ManyToOne
+    @JoinColumn(name = "COUPON_ID")
+    private Coupon coupon;
 }

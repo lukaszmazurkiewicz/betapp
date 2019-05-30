@@ -23,4 +23,9 @@ public class UserService implements UserServiceInterface {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public void changePassword() {
+
+    }
 }

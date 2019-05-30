@@ -55,5 +55,5 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private Coupon coupon;
+    private List<Coupon> coupons;
 }

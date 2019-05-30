@@ -53,5 +53,5 @@ public class Match {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Odds> oddses;
+    private List<Odds> odds;
 }

@@ -6,6 +6,7 @@ import com.kodilla.betapp.wallet.Wallet;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,6 +34,7 @@ public class User {
     @NotNull
     private String login;
 
+    @Setter
     @Column(name = "PASSWORD")
     @NotNull
     private String password;
@@ -56,4 +58,10 @@ public class User {
             fetch = FetchType.LAZY
     )
     private List<Coupon> coupons;
+
+    public User(long id, String login, String password) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+    }
 }

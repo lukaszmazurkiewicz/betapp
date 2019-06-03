@@ -11,4 +11,12 @@ public class WalletMapper {
                 walletDto.getCurrency()
         );
     }
+
+    WalletDto mapToWalletDto(final Wallet wallet) {
+        return new WalletDto(
+                wallet.getId(),
+                wallet.getAccountBalance(),
+                wallet.getCurrency()
+        );
+    }
 }

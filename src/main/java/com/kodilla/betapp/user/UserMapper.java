@@ -18,7 +18,7 @@ public class UserMapper {
     public UserDto mapToUserDto(final User user) {
         return new UserDto(
                 user.getId(),
-                user.getWallet().getId(),
+                //user.getWallet().getId(),
                 user.getLogin(),
                 user.getPassword());
     }

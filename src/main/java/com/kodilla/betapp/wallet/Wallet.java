@@ -3,6 +3,7 @@ package com.kodilla.betapp.wallet;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +26,7 @@ public class Wallet {
     @NotNull
     private BigDecimal accountBalance;
 
+    @Setter
     @Column(name = "CURRENCY")
     @NotNull
     private Currency currency;

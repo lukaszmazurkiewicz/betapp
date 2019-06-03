@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDto {
     private long id;
-    private long walletId;
+    //private long walletId;
     private String login;
     private String password;
 }

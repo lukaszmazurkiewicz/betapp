@@ -31,12 +31,11 @@ public class UserService implements UserServiceInterface {
         return userRepository.findAll();
     }
 
-    @Transactional
     @Override
     public User changePassword(String password, long id) {
         User user = getUserById(id);
         user.setPassword(password);
 
-        return user;
+        return userRepository.save(user);
     }
 }

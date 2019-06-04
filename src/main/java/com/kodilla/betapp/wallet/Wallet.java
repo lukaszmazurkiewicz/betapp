@@ -22,6 +22,7 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Setter
     @Column(name = "ACCOUNT_BALANCE")
     @NotNull
     private BigDecimal accountBalance;

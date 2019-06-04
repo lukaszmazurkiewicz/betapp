@@ -31,7 +31,7 @@ public class WalletController {
     }
 
     @PatchMapping("/add/{funds}/{id}")
-    WalletDto addFunds(@PathVariable BigDecimal funds, @PathVariable long id) {
+    WalletDto addFunds(@PathVariable BigDecimal funds, @PathVariable Long id) {
         log.info("Add funds to wallet");
 
         return walletMapper.mapToWalletDto(walletService.addFunds(id, funds));

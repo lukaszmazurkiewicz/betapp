@@ -19,14 +19,12 @@ public class WalletService implements WalletServiceInterface {
     @Override
     public Wallet initWallet(Wallet wallet) {
         return walletRepository.save(wallet);
-
     }
 
     @Override
     public Wallet addFunds(Long id, BigDecimal payment) {
         Wallet wallet = getWalletById(id);
-        log.info(" " + wallet.getAccountBalance() + "  " + payment);
-        wallet.getAccountBalance().add(payment);
+        wallet.setAccountBalance(wallet.getAccountBalance().add(payment));
 
         return walletRepository.save(wallet);
     }
@@ -34,7 +32,7 @@ public class WalletService implements WalletServiceInterface {
     @Override
     public Wallet deductFunds(Long id, BigDecimal withdrawal) {
         Wallet wallet = getWalletById(id);
-        wallet.getAccountBalance().subtract(withdrawal);
+        wallet.setAccountBalance(wallet.getAccountBalance().subtract(withdrawal));
 
         return  walletRepository.save(wallet);
     }

@@ -4,6 +4,11 @@ import com.kodilla.betapp.coupon.Coupon;
 import com.kodilla.betapp.match.Match;
 import com.kodilla.betapp.odds.Result;
 import com.kodilla.betapp.user.User;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +24,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@EqualsAndHashCode
 @Entity(name = "EVENTS")
 public class Event {
     @Id
@@ -29,6 +38,10 @@ public class Event {
     @Column(name = "BET")
     @NotNull
     private Result bet;
+
+    @Setter
+    @Column(name = "WIN")
+    private boolean win;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
@@ -41,4 +54,12 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "COUPON_ID")
     private Coupon coupon;
+
+    public Event(long id, Result bet, boolean win, User user, Match match) {
+        this.id = id;
+        this.bet = bet;
+        this.win = win;
+        this.user = user;
+        this.match = match;
+    }
 }

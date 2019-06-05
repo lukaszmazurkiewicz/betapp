@@ -1,9 +1,12 @@
 package com.kodilla.betapp.coupon;
 
+import com.kodilla.betapp.event.Event;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -15,17 +18,34 @@ public class CouponService implements CouponServiceInterface {
     }
 
     @Override
-    public Coupon addCoupon() {
-        return null;
+    public Coupon addCoupon(Coupon coupon) {
+        return couponRepository.save(coupon);
     }
 
     @Override
-    public void checkCoupon() {
+    public Coupon checkCoupon(Long id) {
+        Coupon coupon = getCouponById(id);
+
+        List<Event> loosingEvents = coupon.getEvents().stream()
+                .filter(c -> c.isWin() == false)
+                .collect(Collectors.toList());
+
+        if (loosingEvents.size() > 0) {
+            coupon.setWinner(false);
+        } else {
+            coupon.setWinner(true);
+        }
+
+        return couponRepository.save(coupon);
 
     }
 
     @Override
-    public BigDecimal payoff() {
-        return null;
+    public void payoff(Long id) {
+        Coupon coupon = getCouponById(id);
+        BigDecimal payment = new BigDecimal(25).add(coupon.getUser().getWallet().getAccountBalance());
+        if (coupon.isWinner()) {
+            coupon.getUser().getWallet().setAccountBalance(payment);
+        }
     }
 }

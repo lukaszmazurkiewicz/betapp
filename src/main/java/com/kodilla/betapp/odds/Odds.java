@@ -1,6 +1,8 @@
 package com.kodilla.betapp.odds;
 
 import com.kodilla.betapp.match.Match;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+@Getter
+@AllArgsConstructor
 @Entity(name = "ODDS")
 public class Odds {
     @Id

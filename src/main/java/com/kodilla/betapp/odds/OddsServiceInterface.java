@@ -1,5 +1,5 @@
 package com.kodilla.betapp.odds;
 
 public interface OddsServiceInterface {
-    void addOdds();
+    Odds addOdds(Odds odds);
 }

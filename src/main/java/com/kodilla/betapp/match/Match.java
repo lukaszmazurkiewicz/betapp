@@ -2,7 +2,10 @@ package com.kodilla.betapp.match;
 
 import com.kodilla.betapp.odds.Odds;
 import com.kodilla.betapp.odds.Result;
-import com.kodilla.betapp.team.Team;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,35 +20,30 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@NoArgsConstructor
 @Entity(name = "MATCHES")
 public class Match {
     @Id
     @GeneratedValue
     private long id;
 
+    @Column(name = "HOST_TEAM")
+    @NotNull
+    private String hostTeam;
+
+    @Column(name = "GUEST_TEAM")
+    @NotNull
+    private String guestTeam;
+
     @Column(name = "MATCH_DATE")
     @NotNull
     private LocalDate matchDate;
 
+    @Setter
     @Enumerated(value = EnumType.STRING)
     @Column(name = "END_RESULT")
     private Result endResult;
-
-    @OneToMany (
-            targetEntity = Team.class,
-            mappedBy = "match",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Team> hostTeams;
-
-    @OneToMany (
-            targetEntity = Team.class,
-            mappedBy = "match",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Team> guestTeams;
 
     @OneToMany (
             targetEntity = Odds.class,
@@ -54,4 +52,12 @@ public class Match {
             fetch = FetchType.LAZY
     )
     private List<Odds> odds;
+
+    public Match(long id, String hostTeam, String guestTeam, LocalDate matchDate, Result endResult) {
+        this.id = id;
+        this.hostTeam = hostTeam;
+        this.guestTeam = guestTeam;
+        this.matchDate = matchDate;
+        this.endResult = endResult;
+    }
 }

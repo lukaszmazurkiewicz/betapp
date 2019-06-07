@@ -17,12 +17,4 @@ public class EventDto {
     private long userId;
     private long matchId;
     private long couponId;
-
-    public EventDto(long id, Result bet, boolean win, long userId, long matchId) {
-        this.id = id;
-        this.bet = bet;
-        this.win = win;
-        this.userId = userId;
-        this.matchId = matchId;
-    }
 }

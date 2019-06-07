@@ -20,7 +20,7 @@ public class CouponController {
     private final CouponService couponService;
 
     @PostMapping
-    Long addCoupon(@RequestBody CouponDto couponDto) {
+    long addCoupon(@RequestBody CouponDto couponDto) {
         log.info("Add coupon called. CouponDto [{}]", couponDto);
 
         Coupon coupon = couponService.addCoupon(couponMapper.mapToCoupon(couponDto));
@@ -28,9 +28,16 @@ public class CouponController {
     }
 
     @PatchMapping("/{id}")
-    CouponDto checkCoupon(@PathVariable Long id) {
+    CouponDto checkCoupon(@PathVariable long id) {
         log.info("Checking coupon with id [{}]", id);
 
         return couponMapper.mapToCouponDto(couponService.checkCoupon(id));
+    }
+
+    @PatchMapping("/payoff/{id}")
+    void payoff(@PathVariable long id) {
+        log.info("Payoff to user with id [{}]", id);
+
+        couponService.payoff(id);
     }
 }

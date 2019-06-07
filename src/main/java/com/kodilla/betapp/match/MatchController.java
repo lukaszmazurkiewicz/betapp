@@ -25,7 +25,7 @@ public class MatchController {
     private final MatchService matchService;
 
     @PostMapping
-    Long addMatch(@RequestBody MatchDto matchDto) {
+    long addMatch(@RequestBody MatchDto matchDto) {
         log.info("Add match called. MatchDto [{}]", matchDto);
 
         Match match = matchService.addMatch(matchMapper.mapToMatch(matchDto));

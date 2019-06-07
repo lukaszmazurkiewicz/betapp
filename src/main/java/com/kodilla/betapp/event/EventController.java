@@ -24,7 +24,7 @@ public class EventController {
     private final EventService eventService;
 
     @PostMapping
-    Long addEvent(@RequestBody EventDto eventDto) {
+    long addEvent(@RequestBody EventDto eventDto) {
         log.info("Add event called. EventDto [{}]", eventDto);
 
         Event event = eventService.addEvent(eventMapper.mapToEvent(eventDto));

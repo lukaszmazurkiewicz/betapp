@@ -22,7 +22,7 @@ public class WalletController {
     private WalletService walletService;
 
     @PostMapping
-    Long initWallet(@RequestBody WalletDto walletDto) {
+    long initWallet(@RequestBody WalletDto walletDto) {
         log.info("Init wallet called. WalletDto [{}]", walletDto);
 
         Wallet wallet = walletService.initWallet(walletMapper.mapToWallet(walletDto));

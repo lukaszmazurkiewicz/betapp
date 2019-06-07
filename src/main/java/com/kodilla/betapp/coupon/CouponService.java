@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class CouponService implements CouponServiceInterface {
     private final CouponRepository couponRepository;
 
+    @Override
     public Coupon getCouponById(long id) {
         return couponRepository.findById(id).orElseThrow(() -> new CouponNotFindException("Coupon with id " + id + " not found"));
     }
@@ -23,7 +24,7 @@ public class CouponService implements CouponServiceInterface {
     }
 
     @Override
-    public Coupon checkCoupon(Long id) {
+    public Coupon checkCoupon(long id) {
         Coupon coupon = getCouponById(id);
 
         List<Event> loosingEvents = coupon.getEvents().stream()
@@ -41,7 +42,7 @@ public class CouponService implements CouponServiceInterface {
     }
 
     @Override
-    public void payoff(Long id) {
+    public void payoff(long id) {
         Coupon coupon = getCouponById(id);
         BigDecimal payment = new BigDecimal(25).add(coupon.getUser().getWallet().getAccountBalance());
         if (coupon.isWinner()) {

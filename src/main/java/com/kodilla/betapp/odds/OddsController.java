@@ -18,7 +18,7 @@ public class OddsController {
     private final OddsService oddsService;
 
     @PostMapping
-    Long addOdds(@RequestBody OddsDto oddsDto) {
+    long addOdds(@RequestBody OddsDto oddsDto) {
         log.info("Add odds called. OddsDto [{}]", oddsDto);
 
         Odds odds = oddsService.addOdds(oddsMapper.mapToOdds(oddsDto));

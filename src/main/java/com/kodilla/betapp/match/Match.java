@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "MATCHES")
 public class Match {
@@ -48,7 +49,7 @@ public class Match {
     @OneToMany (
             targetEntity = Odds.class,
             mappedBy = "match",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
     private List<Odds> odds;

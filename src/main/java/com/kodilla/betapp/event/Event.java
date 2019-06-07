@@ -5,7 +5,6 @@ import com.kodilla.betapp.match.Match;
 import com.kodilla.betapp.odds.Result;
 import com.kodilla.betapp.user.User;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +26,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@EqualsAndHashCode
 @Entity(name = "EVENTS")
 public class Event {
     @Id
@@ -47,7 +45,7 @@ public class Event {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "MATCH_ID")
     private Match match;
 

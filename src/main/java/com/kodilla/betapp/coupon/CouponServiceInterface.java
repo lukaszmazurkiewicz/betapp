@@ -1,9 +1,8 @@
 package com.kodilla.betapp.coupon;
 
-import java.math.BigDecimal;
-
 public interface CouponServiceInterface {
-    Coupon addCoupon();
-    void checkCoupon();
-    BigDecimal payoff();
+    Coupon getCouponById(long id);
+    Coupon addCoupon(Coupon coupon);
+    Coupon checkCoupon(long id);
+    void payoff(long id);
 }

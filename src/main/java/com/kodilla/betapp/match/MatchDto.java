@@ -2,6 +2,7 @@ package com.kodilla.betapp.match;
 
 import com.kodilla.betapp.odds.Result;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 public class MatchDto {
     private long id;
     private String hostTeam;

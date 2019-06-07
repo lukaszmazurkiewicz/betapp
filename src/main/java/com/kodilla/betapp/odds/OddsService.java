@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 public class OddsService implements OddsServiceInterface {
     private final OddsRepository oddsRepository;
 
-    public Odds getOddsById(Long id) {
-        return oddsRepository.findById(id).orElseThrow(() -> new OddsNotFoundException("Odds with given id doesn't exist"));
+    public Odds getOddsById(long id) {
+        return oddsRepository.findById(id).orElseThrow(() -> new OddsNotFoundException("Odds with given id" + id + " doesn't exist"));
     }
 
     @Override

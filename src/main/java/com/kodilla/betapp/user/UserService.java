@@ -1,18 +1,19 @@
 package com.kodilla.betapp.user;
 
+import com.kodilla.betapp.wallet.Wallet;
+import com.kodilla.betapp.wallet.WalletService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class UserService implements UserServiceInterface {
-    @Autowired
     private UserRepository userRepository;
 
+    @Override
     public User getUserById(long id) {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id " + id + "not found."));
     }
@@ -23,10 +24,11 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public void deleteUser(User user) {
-        userRepository.delete(user);
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
     }
 
+    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -37,5 +39,13 @@ public class UserService implements UserServiceInterface {
         user.setPassword(password);
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public BigDecimal checkBallanceOfAccount(long id) {
+        User user = getUserById(id);
+        BigDecimal ballance = user.getWallet().getAccountBalance();
+
+        return ballance;
     }
 }

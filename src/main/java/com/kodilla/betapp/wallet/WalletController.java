@@ -22,7 +22,7 @@ public class WalletController {
     private WalletService walletService;
 
     @PostMapping
-    Long initWallet(@RequestBody WalletDto walletDto) {
+    long initWallet(@RequestBody WalletDto walletDto) {
         log.info("Init wallet called. WalletDto [{}]", walletDto);
 
         Wallet wallet = walletService.initWallet(walletMapper.mapToWallet(walletDto));
@@ -31,22 +31,22 @@ public class WalletController {
     }
 
     @PatchMapping("/add/{funds}/{id}")
-    WalletDto addFunds(@PathVariable BigDecimal funds, @PathVariable Long id) {
-        log.info("Add funds to wallet");
+    WalletDto addFunds(@PathVariable BigDecimal funds, @PathVariable long id) {
+        log.info("Add funds to wallet with id [{}]", id);
 
         return walletMapper.mapToWalletDto(walletService.addFunds(id, funds));
     }
 
     @PatchMapping("/sub/{deduct}/{id}")
     WalletDto deductFunds(@PathVariable BigDecimal deduct, @PathVariable long id) {
-        log.info("Cash out funds from wallet");
+        log.info("Cash out funds from wallet with id [{}]", id);
 
         return walletMapper.mapToWalletDto(walletService.deductFunds(id, deduct));
     }
 
     @PatchMapping("/{currency}/{id}")
     WalletDto changeCurrency(@PathVariable Currency currency, @PathVariable long id) {
-        log.info("Change currency in wallet");
+        log.info("Change currency to [{}] in wallet with id [{}]", currency, id);
 
         return walletMapper.mapToWalletDto(walletService.changeCurrency(id, currency));
     }

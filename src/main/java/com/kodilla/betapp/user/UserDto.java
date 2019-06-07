@@ -12,10 +12,4 @@ public class UserDto {
     private long walletId;
     private String login;
     private String password;
-
-    public UserDto(long id, String login, String password) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-    }
 }

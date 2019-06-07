@@ -2,14 +2,14 @@ package com.kodilla.betapp.event;
 
 import com.kodilla.betapp.odds.Result;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@EqualsAndHashCode
+@Data
 public class EventDto {
     private long id;
     private Result bet;

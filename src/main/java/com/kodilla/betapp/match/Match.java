@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "MATCHES")
 public class Match {

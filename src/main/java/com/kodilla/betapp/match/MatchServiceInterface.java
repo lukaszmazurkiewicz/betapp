@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface MatchServiceInterface {
     Match addMatch(Match match);
-    Match updateResult(Result result, Long id);
-    void deleteMatch(Long id);
-    List<Match> listOfAllMatches();
+    Match updateResult(Result result, long id);
+    void deleteMatch(long id);
+    List<Match> getListOfAllMatches();
+    Match getMatchById(long id);
 }

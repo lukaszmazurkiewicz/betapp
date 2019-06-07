@@ -11,6 +11,7 @@ import java.util.List;
 public class MatchService implements MatchServiceInterface {
     private final MatchRepository matchRepository;
 
+    @Override
     public Match getMatchById(long id) {
         return matchRepository.findById(id).orElseThrow(() -> new MatchNotFindException("Match with id " + id + " not found."));
     }
@@ -21,7 +22,7 @@ public class MatchService implements MatchServiceInterface {
     }
 
     @Override
-    public Match updateResult(Result result, Long id) {
+    public Match updateResult(Result result, long id) {
         Match match = getMatchById(id);
         match.setEndResult(result);
 
@@ -29,12 +30,12 @@ public class MatchService implements MatchServiceInterface {
     }
 
     @Override
-    public void deleteMatch(Long id) {
+    public void deleteMatch(long id) {
         matchRepository.deleteById(id);
     }
 
     @Override
-    public List<Match> listOfAllMatches() {
+    public List<Match> getListOfAllMatches() {
         return matchRepository.findAll();
     }
 }

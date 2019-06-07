@@ -36,20 +36,20 @@ public class MatchController {
     public List<MatchDto> getMatches() {
         log.info("List of all matches called.");
 
-        return matchMapper.mapToMatchDtoList(matchService.listOfAllMatches());
+        return matchMapper.mapToMatchDtoList(matchService.getListOfAllMatches());
 
     }
 
     @PatchMapping("/{result}/{id}")
-    MatchDto updateResult(@PathVariable Result result, @PathVariable Long id) {
-        log.info("Update result of a match.");
+    MatchDto updateResult(@PathVariable Result result, @PathVariable long id) {
+        log.info("Update result [{}] of a match with id [{}]", result, id);
 
         return matchMapper.mapToMatchDto(matchService.updateResult(result, id));
     }
 
     @DeleteMapping("/{id}")
-    void deleteResult(@PathVariable Long id) {
-        log.info("Delete of a match.");
+    void deleteResult(@PathVariable long id) {
+        log.info("Delete of a match with id [{}]", id);
 
         matchService.deleteMatch(id);
     }

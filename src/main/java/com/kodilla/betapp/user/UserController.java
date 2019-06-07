@@ -3,6 +3,7 @@ package com.kodilla.betapp.user;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -29,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping
-    Long addUser(@RequestBody UserDto userDto) {
+    long addUser(@RequestBody UserDto userDto) {
         log.info("Add user called. UserDto [{}]", userDto);
 
         User user = userService.addUser(userMapper.mapToUser(userDto));
@@ -39,8 +41,22 @@ public class UserController {
 
     @PatchMapping("/{password}/{id}")
     UserDto changePassword(@PathVariable String password, @PathVariable long id) {
-        log.info("Change password called.");
+        log.info("Change password of user with id [{}]", id);
 
         return userMapper.mapToUserDto(userService.changePassword(password, id));
+    }
+
+    @DeleteMapping("/{id}")
+    void deleteUser(@PathVariable long id) {
+        log.info("Delete user with given id [{}]", id);
+
+        userService.deleteUser(id);
+    }
+
+    @GetMapping("/ballance/{id}")
+    BigDecimal checkBallanceOfAccount(@PathVariable long id) {
+        log.info("Checking ballance of account user with id [{}]", id);
+
+        return userService.checkBallanceOfAccount(id);
     }
 }

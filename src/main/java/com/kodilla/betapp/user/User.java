@@ -59,9 +59,10 @@ public class User {
     )
     private List<Coupon> coupons;
 
-    public User(long id, String login, String password) {
+    public User(long id, String login, String password, Wallet wallet) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.wallet = wallet;
     }
 }

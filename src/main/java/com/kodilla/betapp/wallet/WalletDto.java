@@ -13,4 +13,9 @@ public class WalletDto {
     private long id;
     private BigDecimal accountBallance;
     private Currency currency;
+
+    public WalletDto(BigDecimal accountBallance, Currency currency) {
+        this.accountBallance = accountBallance;
+        this.currency = currency;
+    }
 }

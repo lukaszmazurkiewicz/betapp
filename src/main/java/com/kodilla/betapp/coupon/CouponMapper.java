@@ -16,6 +16,7 @@ public class CouponMapper {
         User user = userService.getUserById(couponDto.getUserId());
         return new Coupon(
                 couponDto.getId(),
+                couponDto.getStake(),
                 couponDto.isWinner(),
                 user,
                 new ArrayList<>()
@@ -25,6 +26,7 @@ public class CouponMapper {
     CouponDto mapToCouponDto(final Coupon coupon) {
         return new CouponDto(
                 coupon.getId(),
+                coupon.getStake(),
                 coupon.isWinner(),
                 coupon.getUser().getId(),
                 coupon.getEvents()

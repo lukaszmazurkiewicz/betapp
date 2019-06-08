@@ -16,4 +16,6 @@ public interface OddsRepository extends CrudRepository<Odds, Long> {
 
     @Override
     List<Odds> findAll();
+
+    Odds findByResultAndMatchId(Result result, long matchId);
 }

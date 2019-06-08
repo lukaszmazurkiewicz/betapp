@@ -59,7 +59,6 @@ public class CouponService implements CouponServiceInterface {
         }
         if (coupon.isWinner()) {
             payment = payment.add(coupon.getUser().getWallet().getAccountBalance());
-            log.info("   loop      [{}]           ", payment);
             coupon.getUser().getWallet().setAccountBalance(payment);
         }
         walletRepository.save(coupon.getUser().getWallet());

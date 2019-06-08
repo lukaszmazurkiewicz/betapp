@@ -3,6 +3,8 @@ package com.kodilla.betapp.odds;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 @AllArgsConstructor
 public class OddsService implements OddsServiceInterface {

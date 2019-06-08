@@ -22,6 +22,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,6 +39,10 @@ public class Event {
     private Result bet;
 
     @Setter
+    @Column(name = "BET_ODDS")
+    private BigDecimal betOdds;
+
+    @Setter
     @Column(name = "WIN")
     private boolean win;
 
@@ -52,12 +57,4 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "COUPON_ID")
     private Coupon coupon;
-
-    public Event(long id, Result bet, boolean win, User user, Match match) {
-        this.id = id;
-        this.bet = bet;
-        this.win = win;
-        this.user = user;
-        this.match = match;
-    }
 }

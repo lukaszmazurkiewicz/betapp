@@ -27,6 +27,7 @@ public class EventMapper {
         return new Event(
                 eventDto.getId(),
                 eventDto.getBet(),
+                eventDto.getBetOdds(),
                 eventDto.isWin(),
                 user,
                 match,
@@ -38,6 +39,7 @@ public class EventMapper {
         return new EventDto(
                 event.getId(),
                 event.getBet(),
+                event.getBetOdds(),
                 event.isWin(),
                 event.getUser().getId(),
                 event.getMatch().getId(),

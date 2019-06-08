@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @AllArgsConstructor
@@ -12,6 +13,7 @@ import java.util.List;
 @Data
 public class CouponDto {
     private long id;
+    private BigDecimal stake;
     private boolean winner;
     private long userId;
     private List<Event> events;

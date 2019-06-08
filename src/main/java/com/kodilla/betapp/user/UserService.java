@@ -1,7 +1,5 @@
 package com.kodilla.betapp.user;
 
-import com.kodilla.betapp.wallet.Wallet;
-import com.kodilla.betapp.wallet.WalletService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,7 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public User getUserById(long id) {
-        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id " + id + "not found."));
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found."));
     }
 
     @Override

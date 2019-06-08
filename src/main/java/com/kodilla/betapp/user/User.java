@@ -4,6 +4,7 @@ import com.kodilla.betapp.coupon.Coupon;
 import com.kodilla.betapp.event.Event;
 import com.kodilla.betapp.wallet.Wallet;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +24,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 @Entity(name = "USERS")
 public class User {
     @Id
@@ -61,6 +62,17 @@ public class User {
 
     public User(long id, String login, String password, Wallet wallet) {
         this.id = id;
+        this.login = login;
+        this.password = password;
+        this.wallet = wallet;
+    }
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+    public User(@NotNull String login, @NotNull String password, Wallet wallet) {
         this.login = login;
         this.password = password;
         this.wallet = wallet;

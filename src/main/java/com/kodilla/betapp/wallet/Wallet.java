@@ -32,4 +32,8 @@ public class Wallet {
     @NotNull
     private Currency currency;
 
+    public Wallet(BigDecimal accountBalance, Currency currency) {
+        this.accountBalance = accountBalance;
+        this.currency = currency;
+    }
 }

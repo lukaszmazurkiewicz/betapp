@@ -1,6 +1,7 @@
 package com.kodilla.betapp.wallet;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "WALLET")
@@ -32,4 +33,8 @@ public class Wallet {
     @NotNull
     private Currency currency;
 
+    public Wallet(BigDecimal accountBalance, Currency currency) {
+        this.accountBalance = accountBalance;
+        this.currency = currency;
+    }
 }

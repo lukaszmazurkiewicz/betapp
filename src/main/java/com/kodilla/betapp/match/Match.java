@@ -3,6 +3,7 @@ package com.kodilla.betapp.match;
 import com.kodilla.betapp.odds.Odds;
 import com.kodilla.betapp.odds.Result;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "MATCHES")
@@ -56,6 +57,20 @@ public class Match {
 
     public Match(long id, String hostTeam, String guestTeam, LocalDate matchDate, Result endResult) {
         this.id = id;
+        this.hostTeam = hostTeam;
+        this.guestTeam = guestTeam;
+        this.matchDate = matchDate;
+        this.endResult = endResult;
+    }
+
+    public Match(long id, String hostTeam, String guestTeam, Result endResult) {
+        this.id = id;
+        this.hostTeam = hostTeam;
+        this.guestTeam = guestTeam;
+        this.endResult = endResult;
+    }
+
+    public Match(String hostTeam, String guestTeam, LocalDate matchDate, Result endResult) {
         this.hostTeam = hostTeam;
         this.guestTeam = guestTeam;
         this.matchDate = matchDate;

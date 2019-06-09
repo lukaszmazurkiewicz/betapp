@@ -12,7 +12,7 @@ public class WalletService implements WalletServiceInterface {
 
     @Override
     public Wallet getWalletById(long id) {
-        return walletRepository.findById(id).orElseThrow(() -> new WalletNotFoundException("Wallet with id " + id + "not found." ));
+        return walletRepository.findById(id).orElseThrow(() -> new WalletNotFoundException("Wallet with id " + id + " not found." ));
     }
 
     @Override

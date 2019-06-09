@@ -37,4 +37,9 @@ public class Odds {
     @ManyToOne
     @JoinColumn(name = "MATCH_ID")
     private Match match;
+
+    public Odds(Result result, BigDecimal matchOdds) {
+        this.result = result;
+        this.matchOdds = matchOdds;
+    }
 }

@@ -55,6 +55,18 @@ public class WalletServiceTestSuite {
         assertEquals(wallet2.getCurrency(), testWallet.getCurrency());
     }
 
+    @Test(expected = WalletNotFoundException.class)
+    public void testGetWalletByIdThrewException() {
+        //Given
+        Wallet wallet2 = new Wallet(BigDecimal.ZERO, Currency.EUR);
+
+
+        //When
+        Wallet testWallet = walletService.getWalletById(2L);
+
+        //Then
+    }
+
     @Test
     public void testAddFunds() {
         //Given

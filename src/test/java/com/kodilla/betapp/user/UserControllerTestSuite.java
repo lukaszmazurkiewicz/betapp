@@ -10,13 +10,16 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -70,5 +73,49 @@ public class UserControllerTestSuite {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    public void testChangePassword() throws Exception {
+        //Given
+        String password = "password";
+        long id = 2L;
+        UserDto userDto = new UserDto(1L, 2L, "test", "password");
+
+        when(userMapper.mapToUserDto(userService.changePassword(password, id))).thenReturn(userDto);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(userDto);
+
+        //When & THen
+        mockMvc.perform(patch("/users/password/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .content(jsonContent))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.walletId", is(2)))
+                .andExpect(jsonPath("$.login", is("test")))
+                .andExpect(jsonPath("$.password", is("password")));
+    }
+
+    @Test
+    public void testDeleteUser() throws Exception {
+        //Given
+
+        //When & Then
+        mockMvc.perform(delete("/users/1").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testCheckBallanceOfAccount() throws Exception {
+        //Given
+        long id = 2L;
+
+        when(userService.checkBallanceOfAccount(id)).thenReturn(BigDecimal.ONE);
+
+        //When & Then
+        mockMvc.perform(get("/users/ballance/1").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
 
 }

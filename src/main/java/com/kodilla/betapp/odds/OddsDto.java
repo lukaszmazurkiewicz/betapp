@@ -14,4 +14,9 @@ public class OddsDto {
     private Result result;
     private BigDecimal matchOdds;
     private long matchId;
+
+    public OddsDto(Result result, BigDecimal matchOdds) {
+        this.result = result;
+        this.matchOdds = matchOdds;
+    }
 }

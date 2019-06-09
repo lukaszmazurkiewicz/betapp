@@ -64,6 +64,19 @@ public class UserServiceTestSuite {
         assertEquals(user.getCoupons(), testUser.getCoupons());
     }
 
+    @Test(expected = UserNotFoundException.class)
+    public void testGetUserByIdThrewException() {
+        //Given
+        User user = new User("test", "testpass");
+
+        //when(userRepository.findById(anyLong())).thenReturn(Optional.of(user));
+
+        //When
+        User testUser = userService.getUserById(2L);
+
+        //Then
+    }
+
     @Test
     public void testGetAllUsers() {
         //Given

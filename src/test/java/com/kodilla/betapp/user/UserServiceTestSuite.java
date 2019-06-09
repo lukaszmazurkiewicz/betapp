@@ -83,6 +83,9 @@ public class UserServiceTestSuite {
         User user = new User("test", "testpass");
         User user2 = new User("test2", "testpass2");
 
+        userRepository.save(user);
+        userRepository.save(user2);
+
         List<User> users = new ArrayList<>();
         users.add(user);
         users.add(user2);
@@ -117,5 +120,22 @@ public class UserServiceTestSuite {
         assertEquals(user.getWallet(), testUser.getWallet());
         assertEquals(user.getEvents(), testUser.getEvents());
         assertEquals(user.getCoupons(), testUser.getCoupons());
+    }
+
+    @Test
+    public void testDeleteUser() {
+        //Given
+        long sizeOfDatabaseBeforeTest = userRepository.count();
+
+        User user = new User("test", "testpass");
+
+        userService.addUser(user);
+
+        //When
+        userService.deleteUser(user.getId());
+
+        //Then
+        assertEquals(0, userRepository.count() - sizeOfDatabaseBeforeTest);
+
     }
 }

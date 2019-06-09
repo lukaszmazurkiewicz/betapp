@@ -57,4 +57,10 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "COUPON_ID")
     private Coupon coupon;
+
+    public Event(Result bet, BigDecimal betOdds, boolean win) {
+        this.bet = bet;
+        this.betOdds = betOdds;
+        this.win = win;
+    }
 }

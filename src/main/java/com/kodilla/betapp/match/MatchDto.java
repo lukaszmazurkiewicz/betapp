@@ -18,4 +18,10 @@ public class MatchDto {
     private LocalDate matchDate;
     private Result endResult;
 
+    public MatchDto(long id, String hostTeam, String guestTeam, Result endResult) {
+        this.id = id;
+        this.hostTeam = hostTeam;
+        this.guestTeam = guestTeam;
+        this.endResult = endResult;
+    }
 }

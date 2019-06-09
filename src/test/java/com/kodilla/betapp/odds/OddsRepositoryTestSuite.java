@@ -74,5 +74,4 @@ public class OddsRepositoryTestSuite {
         //Then
         assertEquals(2L, oddsRepository.count() - sizeOfDatabaseBeforeTest);
     }
-
 }

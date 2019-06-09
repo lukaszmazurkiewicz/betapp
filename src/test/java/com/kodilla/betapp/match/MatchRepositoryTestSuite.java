@@ -26,8 +26,8 @@ public class MatchRepositoryTestSuite {
         //Given
         long sizeOfDatabaseBeforeTest = matchRepository.count();
 
-        Match match = new Match(1L, "Lech", "Legia", LocalDate.of(2019, 04, 20), Result.DRAW);
-        Match match2 = new Match(2L, "Lech", "Legia", LocalDate.of(2018, 04, 20), Result.WIN);
+        Match match = new Match("Lech", "Legia", LocalDate.of(2019, 04, 20), Result.DRAW);
+        Match match2 = new Match("Lech", "Legia", LocalDate.of(2018, 04, 20), Result.WIN);
 
         matchRepository.save(match);
         matchRepository.save(match2);

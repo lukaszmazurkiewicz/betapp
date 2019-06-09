@@ -8,10 +8,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -38,5 +39,51 @@ public class EventServiceTestSuite {
         assertEquals(event.getBet(), testEvent.getBet());
         assertEquals(event.getBetOdds(), testEvent.getBetOdds());
         assertEquals(event.isWin(), testEvent.isWin());
+    }
+
+    @Test(expected = EventNotFoundException.class)
+    public void testGetEventByIdThrewException() {
+        //Given
+        Event event = new Event(Result.DRAW, BigDecimal.ONE, true);
+
+        //When
+        Event testEvent = eventService.getEventById(1L);
+
+        //Then
+    }
+
+    @Test
+    public void testDeleteEvent() {
+        //Given
+        long sizeOfDatabaseBeforeTest = eventRepository.count();
+
+        Event event = new Event(Result.DRAW, BigDecimal.ONE, true);
+
+        //When
+        eventService.deleteEvent(event.getId());
+
+        //Then
+        assertEquals(0, eventRepository.count() - sizeOfDatabaseBeforeTest);
+    }
+
+    @Test
+    public void testGetAllEvents() {
+        //Given
+        Event event = new Event(Result.DRAW, BigDecimal.ONE, true);
+        Event event2 = new Event(Result.DRAW, BigDecimal.ONE, false);
+
+        List<Event> events = new ArrayList<>();
+        events.add(event);
+        events.add(event2);
+
+        when(eventRepository.findAll()).thenReturn(events);
+
+        //When
+        List<Event> testEventsList = eventService.getAllEvents();
+
+        //Then
+        assertEquals(2, testEventsList.size());
+        assertTrue(testEventsList.contains(event));
+        assertTrue(testEventsList.contains(event2));
     }
 }

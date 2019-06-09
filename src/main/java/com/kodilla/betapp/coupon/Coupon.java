@@ -49,4 +49,9 @@ public class Coupon {
             fetch = FetchType.LAZY
     )
     private List<Event> events;
+
+    public Coupon(@NotNull BigDecimal stake, boolean winner) {
+        this.stake = stake;
+        this.winner = winner;
+    }
 }

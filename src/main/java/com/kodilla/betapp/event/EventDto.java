@@ -20,4 +20,10 @@ public class EventDto {
     private long userId;
     private long matchId;
     private long couponId;
+
+    public EventDto(Result bet, BigDecimal betOdds, boolean win) {
+        this.bet = bet;
+        this.betOdds = betOdds;
+        this.win = win;
+    }
 }

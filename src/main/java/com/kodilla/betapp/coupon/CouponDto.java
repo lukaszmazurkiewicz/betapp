@@ -17,4 +17,9 @@ public class CouponDto {
     private boolean winner;
     private long userId;
     private List<Event> events;
+
+    public CouponDto(BigDecimal stake, boolean winner) {
+        this.stake = stake;
+        this.winner = winner;
+    }
 }
